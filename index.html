@@ -56,7 +56,7 @@ opacity:1 !important;
 <img id="photo" src="photo1.jpeg">
 
 <audio id="music">
-<source src="Love story Song.mpeg" type="audio/mpeg">
+<source src="Love story song.mpeg" type="audio/mpeg">
 </audio>
 
 <script>
@@ -101,16 +101,16 @@ startPhotos();
 
 let photos=[];
 
-/* generate photo1 to photo20 */
+/* generate photo1 to photo22 */
 
-for(let i=1;i<=20;i++){
+for(let i=1;i<=22;i++){
 photos.push("photo"+i+".jpeg");
 }
 
 let index=0;
 let photo=document.getElementById("photo");
 
-/* 290 sec song / 20 photos ≈ 14 sec each */
+/* 290 sec song / 22 photos ≈ 13 sec each */
 
 function startPhotos(){
 
@@ -134,7 +134,7 @@ photo.classList.add("fadeIn");
 
 },1000);
 
-},14000);
+},13000);
 
 }
 

@@ -32,8 +32,8 @@ opacity:0.9;
 /* photo */
 
 #photo{
-max-width:80%;
-max-height:65vh;
+max-width:85%;
+max-height:70vh;
 border-radius:20px;
 box-shadow:0 10px 40px rgba(255,255,255,0.3);
 opacity:0;
@@ -45,17 +45,6 @@ display:none;
 opacity:1 !important;
 }
 
-/* lyrics */
-
-#lyrics{
-margin-top:25px;
-font-size:26px;
-max-width:700px;
-line-height:1.6;
-min-height:60px;
-display:none;
-}
-
 </style>
 
 </head>
@@ -64,12 +53,10 @@ display:none;
 
 <div id="countdown">3</div>
 
-<img id="photo" src="photo1.jpg">
-
-<div id="lyrics"></div>
+<img id="photo" src="photo1.jpeg">
 
 <audio id="music">
-<source src="song.mp3" type="audio/mpeg">
+<source src="Love story Song.mpeg" type="audio/mpeg">
 </audio>
 
 <script>
@@ -86,12 +73,11 @@ count--;
 if(count>0){
 countdown.innerText=count;
 }
-
 else{
 
 clearInterval(timer);
 countdown.style.display="none";
-startSlideshow();
+startShow();
 
 }
 
@@ -100,10 +86,9 @@ startSlideshow();
 
 /* START SHOW */
 
-function startSlideshow(){
+function startShow(){
 
 document.getElementById("photo").style.display="block";
-document.getElementById("lyrics").style.display="block";
 
 document.getElementById("music").play();
 
@@ -112,19 +97,20 @@ startPhotos();
 }
 
 
-/* PHOTOS */
+/* PHOTO SLIDESHOW */
 
-let photos=[
-"photo1.jpg",
-"photo2.jpg",
-"photo3.jpg",
-"photo4.jpg",
-"photo5.jpg"
-];
+let photos=[];
 
-let photo=document.getElementById("photo");
+/* generate photo1 to photo20 */
+
+for(let i=1;i<=20;i++){
+photos.push("photo"+i+".jpeg");
+}
 
 let index=0;
+let photo=document.getElementById("photo");
+
+/* 290 sec song / 20 photos ≈ 14 sec each */
 
 function startPhotos(){
 
@@ -148,37 +134,9 @@ photo.classList.add("fadeIn");
 
 },1000);
 
-},5000);
+},14000);
 
 }
-
-
-/* LYRICS */
-
-let lyricsData=[
-{time:3, text:"This song reminds me of you ❤️"},
-{time:9, text:"Every moment with you feels magical"},
-{time:16, text:"Every memory we created is special"},
-{time:24, text:"And I want thousands more with you"},
-{time:32, text:"Forever with you ❤️"}
-];
-
-let music=document.getElementById("music");
-let lyricsBox=document.getElementById("lyrics");
-
-music.addEventListener("timeupdate",function(){
-
-let current=music.currentTime;
-
-lyricsData.forEach(line=>{
-
-if(current>=line.time){
-lyricsBox.innerText=line.text;
-}
-
-});
-
-});
 
 </script>
 

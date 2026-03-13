@@ -20,6 +20,20 @@ overflow:hidden;
 text-align:center;
 }
 
+/* start screen */
+
+#startScreen{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:black;
+font-size:30px;
+cursor:pointer;
+}
+
 /* countdown */
 
 #countdown{
@@ -27,6 +41,7 @@ position:absolute;
 font-size:150px;
 font-weight:bold;
 opacity:0.9;
+display:none;
 }
 
 /* photo */
@@ -51,20 +66,42 @@ opacity:1 !important;
 
 <body>
 
+<div id="startScreen">Tap to start our story ❤️</div>
+
 <div id="countdown">3</div>
 
 <img id="photo" src="photo1.jpeg">
 
-<audio id="music" preload="auto" controls style="display:none">
+<audio id="music">
 <source src="lovestorysong.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* COUNTDOWN */
+let startScreen=document.getElementById("startScreen");
+let countdown=document.getElementById("countdown");
+let music=document.getElementById("music");
+
+/* start on click */
+
+startScreen.onclick=function(){
+
+startScreen.style.display="none";
+
+music.play();
+
+startCountdown();
+
+}
+
+
+/* countdown */
+
+function startCountdown(){
+
+countdown.style.display="block";
 
 let count=3;
-let countdown=document.getElementById("countdown");
 
 let timer=setInterval(()=>{
 
@@ -83,25 +120,23 @@ startShow();
 
 },1000);
 
+}
 
-/* START SHOW */
+
+/* start slideshow */
 
 function startShow(){
 
 document.getElementById("photo").style.display="block";
-
-document.getElementById("music").play();
 
 startPhotos();
 
 }
 
 
-/* PHOTO SLIDESHOW */
+/* photos */
 
 let photos=[];
-
-/* generate photo1 to photo22 */
 
 for(let i=1;i<=22;i++){
 photos.push("photo"+i+".jpeg");
@@ -109,8 +144,6 @@ photos.push("photo"+i+".jpeg");
 
 let index=0;
 let photo=document.getElementById("photo");
-
-/* 290 sec song / 22 photos ≈ 13 sec each */
 
 function startPhotos(){
 
@@ -142,6 +175,3 @@ photo.classList.add("fadeIn");
 
 </body>
 </html>
-
-
-

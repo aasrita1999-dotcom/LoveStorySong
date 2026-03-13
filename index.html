@@ -56,6 +56,30 @@ transition:opacity 2s;
 display:none;
 }
 
+/* ending scene */
+
+#ending{
+position:absolute;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+width:100%;
+background:black;
+font-size:40px;
+}
+
+#heart{
+font-size:120px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:scale(1); opacity:0.8;}
+to{transform:scale(1.2); opacity:1;}
+}
+
 .fadeIn{
 opacity:1 !important;
 }
@@ -71,6 +95,12 @@ opacity:1 !important;
 <div id="countdown">3</div>
 
 <img id="photo" src="photo1.jpeg">
+
+<div id="ending">
+<div id="heart">❤️</div>
+<div>Our Story is just beginning...</div>
+<div style="font-size:28px;margin-top:15px">Forever with you My Love❤️</div>
+</div>
 
 <audio id="music">
 <source src="lovestorysong.mp3" type="audio/mpeg">
@@ -93,7 +123,6 @@ music.play();
 startCountdown();
 
 }
-
 
 /* countdown */
 
@@ -122,8 +151,7 @@ startShow();
 
 }
 
-
-/* start slideshow */
+/* slideshow */
 
 function startShow(){
 
@@ -132,7 +160,6 @@ document.getElementById("photo").style.display="block";
 startPhotos();
 
 }
-
 
 /* photos */
 
@@ -168,6 +195,16 @@ photo.classList.add("fadeIn");
 },1000);
 
 },13000);
+
+}
+
+/* ending after song */
+
+music.onended=function(){
+
+document.getElementById("photo").style.display="none";
+
+document.getElementById("ending").style.display="flex";
 
 }
 
